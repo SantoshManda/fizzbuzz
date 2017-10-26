@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.santosh.fizzbuzz.DAO.FizzBuzzDAO;
+
 public class FizzBuzzServiceImpl implements FizzBuzzService {
 
 	@Autowired
