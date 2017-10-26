@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import com.santosh.fizzbuzz.errors.ApiError;
 import com.santosh.fizzbuzz.services.FizzBuzzService;
 
 
@@ -31,6 +32,14 @@ public class FizzBuzzController {
 		return Fs.process(UpperBound);	
 	}
 	
-
+	@ExceptionHandler({ MethodArgumentTypeMismatchException.class })
+	public ResponseEntity<Object> handleMethodArgumentTypeMismatch(
+	  MethodArgumentTypeMismatchException ex, WebRequest request) {
+	    String error = ex.getName() + " should be of type " + ex.getRequiredType().getName();
+	 
+	    ApiError apiError = 
+	      new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), error);
+	    return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
+	}
 
 }
