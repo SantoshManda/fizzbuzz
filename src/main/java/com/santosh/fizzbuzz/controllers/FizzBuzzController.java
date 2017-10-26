@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import com.santosh.fizzbuzz.CustomExceptions.UpperBoundLessThanZeroException;
 import com.santosh.fizzbuzz.errors.ApiError;
 import com.santosh.fizzbuzz.services.FizzBuzzService;
 
@@ -27,7 +28,7 @@ public class FizzBuzzController {
 	private FizzBuzzService Fs;
 	
 	@RequestMapping(value="/fizzbuzz/{UpperBound}", method=RequestMethod.GET)
-	public LinkedHashMap<String,ArrayList<Integer>> fizController(@PathVariable("UpperBound") Integer UpperBound) throws MethodArgumentTypeMismatchException
+	public LinkedHashMap<String,ArrayList<Integer>> fizController(@PathVariable("UpperBound") Integer UpperBound) throws MethodArgumentTypeMismatchException, UpperBoundLessThanZeroException
 	{
 		return Fs.process(UpperBound);	
 	}
@@ -36,6 +37,16 @@ public class FizzBuzzController {
 	public ResponseEntity<Object> handleMethodArgumentTypeMismatch(
 	  MethodArgumentTypeMismatchException ex, WebRequest request) {
 	    String error = ex.getName() + " should be of type " + ex.getRequiredType().getName();
+	 
+	    ApiError apiError = 
+	      new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), error);
+	    return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
+	}
+	
+	@ExceptionHandler({ UpperBoundLessThanZeroException.class })
+	public ResponseEntity<Object> handleUpperBoundLessThanZero(
+			UpperBoundLessThanZeroException ex, WebRequest request) {
+	    String error =  "Upper Bound should be greater than zero ";
 	 
 	    ApiError apiError = 
 	      new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), error);

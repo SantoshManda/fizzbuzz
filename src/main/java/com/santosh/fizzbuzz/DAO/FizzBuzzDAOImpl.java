@@ -3,12 +3,17 @@ package com.santosh.fizzbuzz.DAO;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+import com.santosh.fizzbuzz.CustomExceptions.UpperBoundLessThanZeroException;
+
 public class FizzBuzzDAOImpl implements FizzBuzzDAO {
 
 	@Override
-	public LinkedHashMap<String, ArrayList<Integer>> calculate(Integer UpperLimit) {
+	public LinkedHashMap<String, ArrayList<Integer>> calculate(Integer UpperLimit) throws UpperBoundLessThanZeroException {
 		// TODO Auto-generated method stub
-		if(UpperLimit.intValue() <= 0 || UpperLimit.intValue() == 1 || UpperLimit.intValue() == 2)
+		
+		if(UpperLimit.intValue() <= 0 )
+			throw new UpperBoundLessThanZeroException("Upper Bound Should be more then 0");
+		if( UpperLimit.intValue() == 1 || UpperLimit.intValue() == 2)
 			return null;
 		LinkedHashMap<String,ArrayList<Integer>> result = new LinkedHashMap<String,ArrayList<Integer>>();
 		ArrayList<Integer> Fizzlist = new ArrayList<Integer>();
