@@ -1,10 +1,10 @@
 package com.santosh.fizzbuzz.DAO;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public interface FizzBuzzDAO {
 	
-	public HashMap<String, ArrayList<Integer>> calculate(Integer UpperLimit);
+	public LinkedHashMap<String, ArrayList<Integer>> calculate(Integer UpperLimit);
 	
 }

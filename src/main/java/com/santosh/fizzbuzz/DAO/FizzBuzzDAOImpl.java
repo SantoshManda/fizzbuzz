@@ -1,16 +1,16 @@
 package com.santosh.fizzbuzz.DAO;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class FizzBuzzDAOImpl implements FizzBuzzDAO {
 
 	@Override
-	public HashMap<String, ArrayList<Integer>> calculate(Integer UpperLimit) {
+	public LinkedHashMap<String, ArrayList<Integer>> calculate(Integer UpperLimit) {
 		// TODO Auto-generated method stub
 		if(UpperLimit.intValue() <= 0 || UpperLimit.intValue() == 1 || UpperLimit.intValue() == 2)
 			return null;
-		HashMap<String,ArrayList<Integer>> result = new HashMap<String,ArrayList<Integer>>();
+		LinkedHashMap<String,ArrayList<Integer>> result = new LinkedHashMap<String,ArrayList<Integer>>();
 		ArrayList<Integer> Fizzlist = new ArrayList<Integer>();
 		ArrayList<Integer> Buzzlist = new ArrayList<Integer>();
 		ArrayList<Integer> FizzBuzzlist = new ArrayList<Integer>();

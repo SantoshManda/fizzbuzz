@@ -1,7 +1,7 @@
 package com.santosh.fizzbuzz.services;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.santosh.fizzbuzz.DAO.FizzBuzzDAO;
@@ -12,7 +12,7 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
 	private FizzBuzzDAO dao;
 	
 	@Override
-	public HashMap<String, ArrayList<Integer>> process(Integer UpperLimit) {
+	public LinkedHashMap<String, ArrayList<Integer>> process(Integer UpperLimit) {
 		// TODO Auto-generated method stub
 		return dao.calculate(UpperLimit);
 	}

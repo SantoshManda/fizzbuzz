@@ -1,7 +1,7 @@
 package com.santosh.fizzbuzz.controllers;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -26,7 +26,7 @@ public class FizzBuzzController {
 	private FizzBuzzService Fs;
 	
 	@RequestMapping(value="/fizzbuzz/{UpperBound}", method=RequestMethod.GET)
-	public HashMap<String,ArrayList<Integer>> fizController(@PathVariable("UpperBound") Integer UpperBound) throws MethodArgumentTypeMismatchException
+	public LinkedHashMap<String,ArrayList<Integer>> fizController(@PathVariable("UpperBound") Integer UpperBound) throws MethodArgumentTypeMismatchException
 	{
 		return Fs.process(UpperBound);	
 	}
