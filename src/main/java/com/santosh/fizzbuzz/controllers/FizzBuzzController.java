@@ -26,15 +26,7 @@ public class FizzBuzzController {
 	@RequestMapping(value="/fizzbuzz/{UpperBound}", method=RequestMethod.GET)
 	public HashMap<String,ArrayList<Integer>> fizController(@PathVariable("UpperBound") Integer UpperBound) throws MethodArgumentTypeMismatchException
 	{
-		//System.out.println("hello world");
-//		HashMap<String,ArrayList<Integer>> result = new HashMap<String,ArrayList<Integer>>();
-//		ArrayList<Integer> x = new ArrayList<Integer>();
-//		x.add(new Integer(2));
-//		x.add(new Integer(3));
-//		result.put("Fizz", x);
-//		return result;
-		return Fs.process(UpperBound);
-		
+		return Fs.process(UpperBound);	
 	}
 	
 
