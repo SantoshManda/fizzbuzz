@@ -33,6 +33,7 @@ public class FizzBuzzController {
 		return Fs.process(UpperBound);	
 	}
 	
+	
 	@ExceptionHandler({ MethodArgumentTypeMismatchException.class })
 	public ResponseEntity<Object> handleMethodArgumentTypeMismatch(
 	  MethodArgumentTypeMismatchException ex, WebRequest request) {

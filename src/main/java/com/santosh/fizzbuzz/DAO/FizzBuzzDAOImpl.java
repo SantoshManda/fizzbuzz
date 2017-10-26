@@ -12,7 +12,7 @@ public class FizzBuzzDAOImpl implements FizzBuzzDAO {
 		// TODO Auto-generated method stub
 		
 		if(UpperLimit.intValue() <= 0 )
-			throw new UpperBoundLessThanZeroException("Upper Bound Should be more then 0");
+			throw new UpperBoundLessThanZeroException("Upper Bound should be greater than zero ");
 		if( UpperLimit.intValue() == 1 || UpperLimit.intValue() == 2)
 			return null;
 		LinkedHashMap<String,ArrayList<Integer>> result = new LinkedHashMap<String,ArrayList<Integer>>();
