@@ -1,8 +1,11 @@
 package com.santosh.fizzbuzz;
 
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 
 
 import org.junit.Test;
@@ -10,8 +13,15 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+//import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 
@@ -43,9 +53,22 @@ public class FizzbuzzApplicationTests {
 	}
 
 	@Test
-	public void testInput15()
+	public void testInput15() throws JsonProcessingException, IOException
 	{
 		
+		RestTemplate restTemplate = new RestTemplate();
+		String ResourceUrl
+		  = ROOT_URL+"/fizzbuzz"+"/15";
+		ResponseEntity<String> response
+		  = restTemplate.getForEntity(ResourceUrl, String.class);
+		assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
+		ObjectMapper mapper = new ObjectMapper();
+		FizzBuzzResults results =  mapper.readValue(response.getBody(),FizzBuzzResults.class);
+		assertThat(results,notNullValue());
+		//JsonNode name = root.path("name");
+		assertThat(results.getFizz(), notNullValue());
+		assertThat(results.getBuzz(), notNullValue());	
+		assertThat(results.getFizzBuzz(), notNullValue());	
 	}
 	
 	@Test
