@@ -22,7 +22,7 @@ public class FizzBuzzResults{
 	
 	public FizzBuzzResults()
 	{
-		System.out.println("FizzBuzzResults");
+		
 	}
 	
 	public List<Integer> getFizz() {
@@ -30,7 +30,6 @@ public class FizzBuzzResults{
 	}
 	
 	public void setFizz(List<Integer> fizz) {
-		System.out.println("setFizz"+fizz.toString());
 		this.fizz = fizz;
 	}
 	
